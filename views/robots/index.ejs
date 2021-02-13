@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">    <title>Jose Ramon - Node</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-2">The Adventures of a Robot on Mars</h1>
+        <a href="./robots/new" class="btn btn-success mt-4 mb-4">New simulation</a>
+        <% robots.forEach(robot => { %>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title"><%= robot.title %></h4>
+                    <div class="card-subtitle text-muted mb-3">
+                        <%=robot.createdAt.toLocaleDateString()%>
+                        <p>Matrix upper x limit: <%=robot.xLimit%></p>
+                        <p>Matrix upper y limit: <%=robot.yLimit%></p>
+                        <p>Robot init position: (<%=robot.startPositionX%>,<%=robot.startPositionY%>,<%=robot.startOrientation%>)</p>
+                        <p>Earth says: <%=robot.path%></p>
+                        <p>Result: <%=robot.result%></p>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>    
+</body>
+</html>
