@@ -93,12 +93,12 @@ const saveDead = (position,direction) => {
 
 const robotIsGonnaDie =  (p,direction) => {
     if(deadPositions.filter(e => 
-        e.position.x === p.x && 
-        e.position.y === p.y &&
-        e.position.orientation === p.orientation &&
-        e.direction === direction
+        e.position.x == p.x && 
+        e.position.y == p.y &&
+        e.position.orientation == p.orientation &&
+        e.direction == direction
         ).length > 0){
-        return true;
+            return true;
     }else{
         return false;
     }     
@@ -157,14 +157,29 @@ const setParameters = (
         setUpperLimitY(upper_limit_y)
 }
 
+const populateDead = (lost) => {
+   lost.forEach(element => {
+       var splittedString = element.result.split(" ");
+       var auxRobot = new Robot(parseInt(splittedString[0]),parseInt(splittedString[1]),splittedString[2])
+       saveDead(Object.assign({}, auxRobot), "F")
+    });
+}
+
+
 module.exports = {
-  solutionNoRecursive: function (upper_limit_x, upper_limit_y,robot_x, robot_y, robot_o, path) {
+  solutionNoRecursive: function (upper_limit_x, upper_limit_y,robot_x, robot_y, robot_o, path,losts) {
+        if(losts.length >0){
+            populateDead(losts)
+        }
         setParameters(upper_limit_x, upper_limit_y)
         var r = new Robot(robot_x, robot_y, robot_o)
         return problemaRobot(r, path) 
 },
 
-  solutionRecursive: function (upper_limit_x, upper_limit_y,robot_x, robot_y, robot_o, path) {
+  solutionRecursive: function (upper_limit_x, upper_limit_y,robot_x, robot_y, robot_o, path,losts) {
+        if(losts.length >0){
+            populateDead(losts)
+        }
         setParameters(upper_limit_x, upper_limit_y)
         var r = new Robot(robot_x, robot_y, robot_o)
         return problemaRobotRecursion(r, path)  

@@ -36,6 +36,10 @@ const robotSchema = new mongoose.Schema({
     result : {
         type: String,
         required: true
+    },
+    isLost : {
+        type: Boolean,
+        required: true
     }
 })
 

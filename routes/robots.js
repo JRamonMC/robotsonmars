@@ -36,7 +36,10 @@ router.get('/:id', async (req, res) => {
 })
 
 router.post('/new', async (req,res) => {
-    const auxResult = helpers.solutionNoRecursive(req.body.xlimit,req.body.ylimit,req.body.xrobot,req.body.yrobot,req.body.orobot,req.body.robotpath)
+    const robots = await Robot.find().sort({ createdAt: 'desc' })
+    const allLosts = robots.filter( e => e.isLost)
+    const sameMatrixLost = allLosts.filter(e => e.xLimit == req.body.xlimit && e.yLimit == req.body.ylimit)
+    const auxResult = helpers.solutionNoRecursive(req.body.xlimit,req.body.ylimit,req.body.xrobot,req.body.yrobot,req.body.orobot,req.body.robotpath, sameMatrixLost)
     let robot = new Robot({
         title : req.body.title,
         xLimit: req.body.xlimit,
@@ -45,7 +48,8 @@ router.post('/new', async (req,res) => {
         startPositionY: req.body.yrobot,
         startOrientation: req.body.orobot,
         path: req.body.robotpath,
-        result: auxResult
+        result: auxResult,
+        isLost: auxResult.includes("LOST")
     })
     try {
         robot = await robot.save();

@@ -18,8 +18,13 @@ const close = () => {
 }
 
 const deleteDatabase = () => {
-    mongoose.connection.db.dropDatabase();
-
+    mongoose.connection.once("open", function() {
+        console.log("*** MongoDB got connected ***");
+        console.log(`Our Current Database Name : ${mongoose.connection.db.databaseName}`);
+        mongoose.connection.db.dropDatabase(
+        console.log(`${mongoose.connection.db.databaseName} database dropped.`)
+        );
+    });
 }
 
 module.exports = {

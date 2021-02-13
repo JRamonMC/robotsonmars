@@ -8,19 +8,25 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="mb-2">The Adventures of a Robot on Mars</h1>
+        <h1 class="mb-2 mt-4">The Adventures of a Robot on Mars</h1>
+        <p>Total Lost Robots : <%= losts %></p>
         <a href="./robots/new" class="btn btn-success mt-4 mb-4">New simulation</a>
         <% robots.forEach(robot => { %>
-            <div class="card">
-                <div class="card-body">
+            <div class="card mb-3">
+                <% if (robot.isLost) { %>
+                    <div class="card-body bg-warning text-light">
+                <%}else{%>
+                    <div class="card-body bg-light text-dark">
+                <%}%>
                     <h4 class="card-title"><%= robot.title %></h4>
                     <div class="card-subtitle text-muted mb-3">
-                        <%=robot.createdAt.toLocaleDateString()%>
+                        <p><%=robot.createdAt.toLocaleDateString()%></p>
                         <p>Matrix upper x limit: <%=robot.xLimit%></p>
                         <p>Matrix upper y limit: <%=robot.yLimit%></p>
                         <p>Robot init position: (<%=robot.startPositionX%>,<%=robot.startPositionY%>,<%=robot.startOrientation%>)</p>
                         <p>Earth says: <%=robot.path%></p>
                         <p>Result: <%=robot.result%></p>
+                        <p>Lost?: <%=robot.isLost%></p>
                     </div>
                 </div>
             </div>
