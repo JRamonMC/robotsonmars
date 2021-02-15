@@ -31,8 +31,8 @@
                 <input required class="form-control" type="numer" name="yrobot" id="yrobot" min="0" max="50">
             </div>
             <div class="form-group">
-                <label for="orobot">Robot initial orientation: </label>
-                <input required class="form-control" type="text" name="orobot" id="orobot" >
+                <label for="orobot">Robot initial orientation. You can introduce W (West), N (North),  E (East) and S (South)</label>
+                <input required class="form-control" type="text" name="orobot" id="orobot" pattern="[NSWE]" >
             </div>
             <div class="form-group">
                 <label for="robotpath">Commands from The Earth. You can introduce F (forward), L (left) and R (right)</label>

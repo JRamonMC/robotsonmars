@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const robotSchema = new mongoose.Schema({
     title:{
@@ -43,5 +43,5 @@ const robotSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('Robot',robotSchema)
+module.exports = mongoose.model('Robot', robotSchema);
 

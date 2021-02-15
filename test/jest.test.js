@@ -7,7 +7,8 @@ const fakeDataRobot = { title : "testJest",
         startPositionY: 2,
         startOrientation: "E",
         path: "L",
-        result: "NONE" }
+        result: "NONE",
+        isLost: true }
 
 describe('Robot MongoDB Test', () => {
   beforeAll(async () => {

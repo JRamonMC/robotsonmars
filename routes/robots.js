@@ -1,25 +1,34 @@
 const express = require('express')
 const router = express.Router({ mergeParams: true })
 const helpers = require('./../utils/helpers');
-const Robot = require('./../model/robot')
+const Robot = require('../model/robot');
+//const microprofiler = require('microprofiler');
+
 
 router.get('/exampleNoRecursive', (req, res) => {
+    //var start = microprofiler.start();
     const result = helpers.solutionNoRecursive(5,3,1,1,"E","RFRFRFRF")
     const result2 = helpers.solutionNoRecursive(5,3,3,2,"N","FRRFLLFFRRFLL")
     const result3 = helpers.solutionNoRecursive(5,3,0,3,"W","LLFFFLFLFL")
+    //var time = microprofiler.measureFrom(start);
     res.send({first: result,
               second: result2, 
-              third: result3    
+              third: result3,
+              //time : time   
     })
 })
 
 router.get('/exampleRecursive', (req, res) => {
+   // var startRecursive = microprofiler.start();
     const result4 = helpers.solutionRecursive(5,3,1,1,"E","RFRFRFRF")
     const result5 = helpers.solutionRecursive(5,3,3,2,"N","FRRFLLFFRRFLL")
     const result6 = helpers.solutionRecursive(5,3,0,3,"W","LLFFFLFLFL")
+   // var time = microprofiler.measureFrom(startRecursive);
+
     res.send({first: result4,
               second: result5, 
-              third: result6    
+              third: result6,
+            //  time: time    
     })
 })
 
@@ -55,9 +64,9 @@ router.post('/new', async (req,res) => {
         robot = await robot.save();
         res.redirect(`/robots/${robot.id}`)
     } catch (error) {
-        console.log("Motivo", error)
-        res.render('robots/new', {robot:robot})
+        console.log("Error: ", error)
+        res.render('robots/new', {robot:robot});
     }
 })
 
-module.exports = router
+module.exports = router;

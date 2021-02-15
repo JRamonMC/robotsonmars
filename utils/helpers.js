@@ -6,27 +6,30 @@ var UPPER_LIMIT_Y = 3;
 const orientationEnum = { N: "N" , W: "W", S:"S", E:"E"};
 Object.freeze(orientationEnum);
 
-var deadPositions = []
+var deadPositions = [];
 var lastPosition;
 var lastCharacter;
 
 const setUpperLimitX = (x) => {
-    UPPER_LIMIT_X = x
+    UPPER_LIMIT_X = x;
 }
 
 const setUpperLimitY = (y) => {
-    UPPER_LIMIT_Y = y
+    UPPER_LIMIT_Y = y;
 }
 
-function Robot(x,y,e){
+function Robot (x,y,e) {
   this.x = x;
   this.y = y;
   this.orientation = e
 }
 
 const isInMart = (robot) => {
-    if(robot.x <= UPPER_LIMIT_X && robot.y <= UPPER_LIMIT_Y && robot.x >= LOWER_LIMIT_X 
-    && robot.y >= LOWER_LIMIT_Y){
+    if( robot.x <= UPPER_LIMIT_X && 
+        robot.y <= UPPER_LIMIT_Y && 
+        robot.x >= LOWER_LIMIT_X && 
+        robot.y >= LOWER_LIMIT_Y)
+    {
         return true
     }
     else{
@@ -36,24 +39,24 @@ const isInMart = (robot) => {
 
 const turnLeft = (robot) => {
     if(robot.orientation === orientationEnum.N)
-        return robot.orientation = orientationEnum.W
+        return robot.orientation = orientationEnum.W;
     else if(robot.orientation === orientationEnum.W)
-        return robot.orientation = orientationEnum.S
+        return robot.orientation = orientationEnum.S;
     else if(robot.orientation === orientationEnum.S)
-        return robot.orientation = orientationEnum.E
+        return robot.orientation = orientationEnum.E;
     else(robot.orientation === orientationEnum.E)
-        return robot.orientation = orientationEnum.N
+        return robot.orientation = orientationEnum.N;
 }
 
 const turnRight = (robot) => {
     if(robot.orientation === orientationEnum.N)
-        return robot.orientation = orientationEnum.E
+        return robot.orientation = orientationEnum.E;
     else if(robot.orientation === orientationEnum.E)
-        return robot.orientation = orientationEnum.S
+        return robot.orientation = orientationEnum.S;
     else if(robot.orientation === orientationEnum.S)
-        return robot.orientation = orientationEnum.W
+        return robot.orientation = orientationEnum.W;
     else(robot.orientation === orientationEnum.W)
-        return robot.orientation = orientationEnum.N
+        return robot.orientation = orientationEnum.N;
 }
 
 const avanti = (robot) => {
@@ -151,38 +154,36 @@ const problemaRobotRecursion = (robot, cadena) =>  {
     }
 }
 
-const setParameters = (
-    upper_limit_x, upper_limit_y) => {
-        setUpperLimitX(upper_limit_x)
-        setUpperLimitY(upper_limit_y)
+const setParameters = ( upper_limit_x, upper_limit_y) => {
+    setUpperLimitX(upper_limit_x)
+    setUpperLimitY(upper_limit_y)
 }
 
 const populateDead = (lost) => {
    lost.forEach(element => {
        var splittedString = element.result.split(" ");
-       var auxRobot = new Robot(parseInt(splittedString[0]),parseInt(splittedString[1]),splittedString[2])
-       saveDead(Object.assign({}, auxRobot), "F")
+       var auxRobot = new Robot(parseInt(splittedString[0]),parseInt(splittedString[1]),splittedString[2]);
+       saveDead(Object.assign({}, auxRobot), "F");
     });
 }
 
-
 module.exports = {
   solutionNoRecursive: function (upper_limit_x, upper_limit_y,robot_x, robot_y, robot_o, path,losts) {
-        if(losts.length >0){
-            populateDead(losts)
+        if(losts && losts.length >0){
+            populateDead(losts);
         }
-        setParameters(upper_limit_x, upper_limit_y)
-        var r = new Robot(robot_x, robot_y, robot_o)
-        return problemaRobot(r, path) 
+        setParameters(upper_limit_x, upper_limit_y);
+        var r = new Robot(robot_x, robot_y, robot_o);
+        return problemaRobot(r, path);
 },
 
   solutionRecursive: function (upper_limit_x, upper_limit_y,robot_x, robot_y, robot_o, path,losts) {
-        if(losts.length >0){
-            populateDead(losts)
+        if(losts && losts.length >0){
+            populateDead(losts);
         }
-        setParameters(upper_limit_x, upper_limit_y)
-        var r = new Robot(robot_x, robot_y, robot_o)
-        return problemaRobotRecursion(r, path)  
+        setParameters(upper_limit_x, upper_limit_y);
+        var r = new Robot(robot_x, robot_y, robot_o);
+        return problemaRobotRecursion(r, path);
   },
   orientationEnum,
   turnRight,
@@ -191,6 +192,5 @@ module.exports = {
   avanti,
   problemaRobot,
   problemaRobotRecursion
-
 };
 
