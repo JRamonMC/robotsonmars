@@ -1,4 +1,4 @@
-const Robot = require('./../model/robot')
+const Robot = require('../model/robot')
 const mongoose = require('mongoose')
 const fakeDataRobot = { title : "testJest",
         xLimit: 6,

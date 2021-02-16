@@ -1,6 +1,5 @@
 const request = require('supertest')
 const app = require('./../server')
-
 /**
  * Test all robots case 
  */

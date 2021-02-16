@@ -4,7 +4,9 @@ const database = require('./database/index')
 const mongoose = require('mongoose')
 const Robot = require('./model/robot')
 const robotsRouter = require('./routes/robots')
-const app = express()
+const app = express();
+const morgan = require("morgan");
+
 
 //environment variables
 require('dotenv').config();
@@ -25,7 +27,11 @@ db.once('open', () => {
 app.set('view engine','ejs');
 
 //middlewares
+app.use(morgan("dev"));
 app.use(express.urlencoded({extended:false}));
+
+
+
 app.use('/robots',robotsRouter);
 
 //List all robots on Database
