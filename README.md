@@ -1,6 +1,7 @@
 # robotsonmars
 Robots on mars is a project  that determines each sequence of robot positions on Mars and reports the final position of the robot. It has been developed with NodeJS, Express, MongoDB and EJS.
 We've chose EJS due to is a quick solution in order to see backend behavour. 
+More info in https://www.notion.so/Jose-Ramon-Some-thoughts-about-the-project-d170f61002f3455c9061c6a4c128ee3c
 
 ## Installation
 
