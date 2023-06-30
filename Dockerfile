@@ -11,7 +11,7 @@ COPY package*.json ./
 
 RUN npm ci
 
-# Copy app source code
+# Copy app sousadrce code
 COPY . .
 
 # Exports
