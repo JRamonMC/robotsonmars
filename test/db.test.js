@@ -1,17 +1,19 @@
 const Robot = require('../model/robot')
 const mongoose = require('mongoose')
-const fakeDataRobot = { title : "testJest",
-        xLimit: 6,
-        yLimit: 3,
-        startPositionX: 2,
-        startPositionY: 2,
-        startOrientation: "E",
-        path: "L",
-        result: "NONE",
-        isLost: true }
+const fakeDataRobot = {
+    title: "testJest",
+    xLimit: 6,
+    yLimit: 3,
+    startPositionX: 2,
+    startPositionY: 2,
+    startOrientation: "E",
+    path: "L",
+    result: "NONE",
+    isLost: true
+}
 
-describe('Robot MongoDB Test', () => {
-  beforeAll(async () => {
+describe('Robotitio MongoDB Test', () => {
+    beforeAll(async () => {
         await mongoose.connect(global.__MONGO_URI__, { useNewUrlParser: true, useCreateIndex: true }, (err) => {
             if (err) {
                 console.error(err);
@@ -20,7 +22,7 @@ describe('Robot MongoDB Test', () => {
         });
     });
 
-    it('Create and save robot case succesfully' , async () => {
+    it('Create and save robot case succesfully', async () => {
         const valirRobot = new Robot(fakeDataRobot);
         const savedRobot = await valirRobot.save();
 
