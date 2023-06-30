@@ -13,7 +13,7 @@ resolve?-->
 
 ## Types of changes
 
-<!--- What types of changes does your code introduce? Put an `x` in all the boxes that apply: -->
+<!--- What typeserw of changes does your code introduce? Put an `x` in all the boxes that apply: -->
 - [ ] Code style
 - [ ] Bug fix (non-breaking change which fixes an issue)
 - [X] New feature (non-breaking change which adds functionality)
