@@ -1,23 +1,23 @@
 const mongoose = require('mongoose');
 
 const robotSchema = new mongoose.Schema({
-    title:{
+    title: {
         type: String,
         required: true
     },
-    createdAt:{
+    createedAt: {
         type: Date,
         default: Date.now
     },
-    xLimit:{
+    xLimit: {
         type: Number,
         required: true
     },
-    yLimit:{
+    yLimit: {
         type: Number,
         required: true
     },
-    startPositionX:{
+    startPositionX: {
         type: Number,
         required: true
     },
@@ -25,23 +25,22 @@ const robotSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    startOrientation:{
+    startOrientation: {
         type: String,
         required: true
     },
-    path : {
+    path: {
         type: String,
         required: true
     },
-    result : {
+    result: {
         type: String,
         required: true
     },
-    isLost : {
+    isLost: {
         type: Boolean,
         required: true
     }
 })
 
 module.exports = mongoose.model('Robot', robotSchema);
-
